@@ -1,11 +1,4 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
 
 <style>
   :host {
@@ -184,11 +177,26 @@
 <main class="main">
   <div class="content">
     <div class="left-side">
-      <h2>
+      
+
+      <button (click)="setVisible()">
+        {{ visible ? "Ocultar" : "Mostrar" }}{{ visible }}
+      </button>
+
+      <p>--------para usar atributo invisible-------------</p>
+
+      <div *ngIf="visible">
+
+        <h2>
         hola izquierda, {{ componente2 }} un numero {{ componente3 }} un arreglo
         {{ componentes4 }}
       </h2>
-      <table *ngIf="(componentes8 != undefined && componentes8.length > 0) else isEmpty">
+      <table
+        *ngIf="
+          componentes8 != undefined && componentes8.length > 0;
+          else isEmpty
+        "
+      >
         <thead>
           <tr>
             <th>id</th>
@@ -204,52 +212,56 @@
         </tbody>
       </table>
       <!-- el isEmpty funciona como un placeholder para cuando no hay datos -->
-       <ng-template #isEmpty>
+      <ng-template #isEmpty>
         <div>no existen elementos</div>
       </ng-template>
+      
+        <table>
+          <p>tabla para arreglo de objetos</p>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Valor</th>
+              <th>Persona</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- //las "" son necesarias para que el HTML no se rompa,  -->
+            <!-- permiten usar codigo javascript -->
+            <tr *ngFor="let item of componentes7; index as i">
+              <td>{{ i }}</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.valor }}</td>
+              <td>{{ item.persona }}</td>
+            </tr>
+          </tbody>
+        </table>
 
+        <h2 >Este es un h2 visible</h2>
+        <input *ngIf="visible" type="text" value="texto visible" />
 
-      <p></p>
-      <table >
-        <p>tabla para arreglo de objetos</p>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Valor</th>
-            <th>Persona</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- //las "" son necesarias para que el HTML no se rompa,  -->
-          <!-- permiten usar codigo javascript -->
-          <tr *ngFor="let item of componentes7; index as i">
-            <td>{{ i }}</td>
-            <td>{{ item.id }}</td>
-            <td>{{ item.valor }}</td>
-            <td>{{ item.persona }}</td>
-          </tr>
-        </tbody>
-      </table>
+        <p >Este es un párrafo</p>
 
+        <div  style="background: lightgreen; padding: 1rem">
+          DIV visible
+        </div>
 
+      </div>
 
-
-
-
+      <button type="button" (click)="visible = !visible">
+        {{ visible ? "Ocultar" : "Mostrar" }} {{ title }}
+      </button>
+      
     </div>
+
     <div class="divider" role="separator" aria-label="Divider"></div>
+
     <div class="right-side">
       <h2>hola derecha</h2>
     </div>
   </div>
 </main>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
 
 <router-outlet />

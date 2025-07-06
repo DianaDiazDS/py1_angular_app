@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
 import { CommonModule } from '@angular/common';
 //este import es necesario para poder usar las directivas ngIf, ngFor, etc. en el HTML del componente.
 
 @Component({
   selector: 'app-root',
+  standalone: true, // ← ESTA LÍNEA ES CLAVE
   imports: [RouterOutlet, CommonModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 
 })
 export class App {
@@ -28,6 +28,10 @@ export class App {
   componentes8 = []
 
   visible: boolean = false;
+  setVisible(): void {this.visible = !this.visible; console.log('visible', this.visible); }
+  testClick() {
+    console.log('¡Click detectado!');
+  }
 }
 /**
  * Componente principal de la aplicación Angular.
