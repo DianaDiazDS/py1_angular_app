@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 //este import es necesario para poder usar las directivas ngIf, ngFor, etc. en el HTML del componente.
 
+import { ComponentCounter } from './component-counter/component-counter';
 @Component({
   selector: 'app-root',
   standalone: true, // ← ESTA LÍNEA ES CLAVE
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, ComponentCounter],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 
