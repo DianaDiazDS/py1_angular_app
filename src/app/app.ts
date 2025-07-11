@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 //este import es necesario para poder usar las directivas ngIf, ngFor, etc. en el HTML del componente.
@@ -12,7 +12,7 @@ import { ComponentCounter } from './component-counter/component-counter';
   styleUrls: ['./app.css']
 
 })
-export class App {
+export class App implements OnInit{
   protected title = 'Angular APP';
   title2 = 'Angular APP';
 
@@ -33,6 +33,31 @@ export class App {
   testClick() {
     console.log('¡Click detectado!');
   }
+
+//classe como pasar varibales de un componente padre a un componente hijo
+  // En Angular, puedes pasar variables de un componente padre a un componente hijo utilizando la propiedad
+  // @Input() en el componente hijo y enlazando la propiedad en el HTML del componente padre.
+  // Aquí tienes un ejemplo básico de cómo hacerlo: 
+
+  subtitle: string = 'subtitulo enviado desde el padre para contador de sesion';
+  //lo llamamos en en counter.ts y en la app html
+
+
+  //hijo a padre
+  counter: number =0;
+
+  setCounter(event:number): void {
+    this.counter = event;
+    console.log('contador recibido del hijo', this.counter);
+  }
+
+  ngOnInit(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const stored = localStorage.getItem('counter');
+      this.counter = stored !== null ? parseInt(stored) : 0;
+    }
+  }
+
 }
 /**
  * Componente principal de la aplicación Angular.

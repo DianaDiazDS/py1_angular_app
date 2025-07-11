@@ -256,8 +256,11 @@
         "
       >
         <h2 style="margin: 5px">Implementación del componente counter</h2>
-        <app-component-counter></app-component-counter>
+        <app-component-counter [title]="subtitle" (counterEmmit)="setCounter($event)"></app-component-counter>
+        <div>total: {{counter}} </div>
+        
       </div>
+      
     </div>
 
     <div class="divider" role="separator" aria-label="Divider"></div>
